@@ -1,15 +1,15 @@
-function ipLookUp () {
-  $.ajax('http://ip-api.com/json')
-  .then(
-      function success(response) {
-          console.log('User\'s Location Data is ', response);
-          console.log('User\'s Country', response.country);
-      },
-
-      function fail(data, status) {
-          console.log('Request failed.  Returned status of',
-                      status);
-      }
+var onSuccess = function(location){
+  alert(
+      "Lookup successful:\n\n"
+      + JSON.stringify(location, undefined, 4)
   );
-}
-ipLookUp()
+};
+
+var onError = function(error){
+  alert(
+      "Error:\n\n"
+      + JSON.stringify(error, undefined, 4)
+  );
+};
+
+geoip2.city(onSuccess, onError);
